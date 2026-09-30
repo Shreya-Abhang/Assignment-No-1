@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Self Processing</title>
+</head>
+<body>
+    <h3>Self-Processing Form</h3>
+
+    <form name="Fr" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <table>
+            <tr>
+                <td>Enter Name:</td>
+                <td><input type="text" name="n"></td>
+            </tr>
+            <tr>
+                <td>Enter Age:</td>
+                <td><input type="number" name="age"></td>
+            </tr>
+            <tr>
+                <td>Enter Gender:</td>
+                <td><input type="text" name="gender"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+
+    <?php
+    if (isset($_POST['submit'])) {
+        echo "<br><table border='1'>";
+        echo "<tr>";
+        echo "<th>Name</th>";
+        echo "<th>Age</th>";
+        echo "<th>Gender</th>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($_POST['n']) . "</td>";
+        echo "<td>" . htmlspecialchars($_POST['age']) . "</td>";
+        echo "<td>" . htmlspecialchars($_POST['gender']) . "</td>";
+        echo "</tr>";
+        echo "</table>";
+    }
+    ?>
+</body>
+</html>
