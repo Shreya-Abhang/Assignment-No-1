@@ -1,0 +1,5 @@
+<?php
+// Redirect the user from one page to another using the Location header
+header("Location: email.php");
+exit();
+?>
