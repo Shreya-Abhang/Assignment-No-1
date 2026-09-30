@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>My HTML Page</title>
+</head>
+<body>
+    <h2>This is My First Web Page</h2>
+    <form name="Fr" action="web.php" method="POST">
+        Font Style:
+        <select name="style">
+            <option value="Arial">Arial</option>
+            <option value="Times new Roman">Times new Roman</option>
+        </select><br>
+
+        Font Size:
+        <select name="size">
+            <option value="30px">30px</option>
+            <option value="40px">40px</option>
+        </select><br>
+
+        Font-Color: <input type="color" name="color"><br>
+        Background-Color: <input type="color" name="bg"><br>
+
+        <input type="submit" name="s" value="submit">
+    </form>
+</body>
+</html>
+
+<?php
+setcookie("style", $_POST['style']);
+setcookie("size", $_POST['size']);
+setcookie("color", $_POST['color']);
+setcookie("bg", $_POST['bg']);
+?>
+
+<html>
+<head>
+    <title>Second page</title>
+</head>
+<body>
+    Font-Style: <?php echo $_POST['style']; ?><br>
+    Font-Size: <?php echo $_POST['size']; ?><br>
+    Font-Color: <?php echo $_POST['color']; ?><br>
+    Background-Color: <?php echo $_POST['bg']; ?><br>
+
+    <a href="web3.php">apply setting</a>
+</body>
+</html>
+
+<html>
+<head>
+    <title>Third Page</title>
+</head>
+<body style="
+    font-family: <?php echo $_COOKIE['style']; ?>;
+    font-size: <?php echo $_COOKIE['size']; ?>;
+    color: <?php echo $_COOKIE['color']; ?>;
+    background-color: <?php echo $_COOKIE['bg']; ?>;
+">
+    <h2>Welcome! Your selected preferences have been applied.</h2>
+</body>
+</html>
