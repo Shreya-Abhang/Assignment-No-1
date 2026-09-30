@@ -1,0 +1,66 @@
+<?php
+session_start();
+
+// Initialize login attempts counter
+if (!isset($_SESSION['attempts'])) {
+    $_SESSION['attempts'] = 0;
+}
+
+if (isset($_POST['submit'])) {
+    // Lock out user after 3 failed attempts
+    if ($_SESSION['attempts'] >= 3) {
+        echo "Try Again Later!";
+        exit();
+    }
+
+    $un = $_POST['un'];
+    $pass = $_POST['pass'];
+
+    // Check credentials
+    if ($un == "admin" && $pass == "1234") {
+        $_SESSION['attempts'] = 0;
+        header("Location: user2.php");
+        exit();
+    } else {
+        $_SESSION['attempts']++;
+        echo "Invalid Username and Password!<br>";
+        echo "Attempts Used: " . $_SESSION['attempts'];
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Session Program</title>
+</head>
+<body>
+    <h3>User Information</h3>
+    <form name="Fr" action="" method="POST">
+        <table>
+            <tr>
+                <td>Enter User Name:</td>
+                <td><input type="text" name="un"></td>
+            </tr>
+            <tr>
+                <td>Enter Password:</td>
+                <td><input type="password" name="pass"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Message</title>
+</head>
+<body>
+    <h3>User Login Success</h3>
+    <p>Welcome! You have logged in successfully!</p>
+</body>
+</html>
