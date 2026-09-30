@@ -1,0 +1,87 @@
+<?php
+session_start();
+
+if (isset($_POST['Submit'])) {
+    $_SESSION['eid'] = $_POST['eid'];
+    $_SESSION['n'] = $_POST['n'];
+    $_SESSION['a'] = $_POST['a'];
+    
+    header("Location: emp2.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Information</title>
+</head>
+<body>
+    <h2>Employee Information</h2>
+    <form name="fr" action="emp.php" method="POST">
+        Enter Employee ID: <input type="number" name="eid"><br>
+        Enter Employee Name: <input type="text" name="n"><br>
+        Enter Address: <input type="text" name="a"><br>
+        <input type="submit" name="Submit" value="Submit">
+    </form>
+</body>
+</html>
+
+<?php
+session_start();
+
+if (isset($_POST['Submit'])) {
+    $_SESSION['basic'] = floatval($_POST['basic']);
+    $_SESSION['da'] = floatval($_POST['da']);
+    $_SESSION['hra'] = floatval($_POST['hra']);
+    
+    header("Location: emp3.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Earnings</title>
+</head>
+<body>
+    <h2>Enter Employee Earnings</h2>
+    <form action="emp2.php" method="POST">
+        Basic Salary: <input type="number" step="any" name="basic"><br>
+        DA: <input type="number" step="any" name="da"><br>
+        HRA: <input type="number" step="any" name="hra"><br>
+        <input type="submit" name="Submit" value="Next">
+    </form>
+</body>
+</html>
+
+<?php
+session_start();
+
+$eid = $_SESSION['eid'] ?? '';
+$n = $_SESSION['n'] ?? '';
+$a = $_SESSION['a'] ?? '';
+$basic = $_SESSION['basic'] ?? 0;
+$da = $_SESSION['da'] ?? 0;
+$hra = $_SESSION['hra'] ?? 0;
+
+$total = $basic + $da + $hra;
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Summary</title>
+</head>
+<body>
+    <h2>Employee Summary Details</h2>
+    <p><strong>Employee ID:</strong> <?php echo $eid; ?></p>
+    <p><strong>Employee Name:</strong> <?php echo $n; ?></p>
+    <p><strong>Address:</strong> <?php echo $a; ?></p>
+    <p><strong>Basic:</strong> <?php echo $basic; ?></p>
+    <p><strong>DA:</strong> <?php echo $da; ?></p>
+    <p><strong>HRA:</strong> <?php echo $hra; ?></p>
+    <p><strong>Total Earnings:</strong> <?php echo $total; ?></p>
+</body>
+</html>
