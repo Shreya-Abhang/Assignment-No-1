@@ -1,0 +1,35 @@
+<?php
+if (isset($_POST['Submit'])) {
+    $n = $_POST['n'];
+    $em = $_POST['em'];
+
+    // Regex patterns
+    $pn = "/^[a-zA-Z]+$/";
+    $p = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/";
+
+    if (empty($n) || empty($em)) {
+        echo "All Fields are Required";
+    } elseif (!preg_match($pn, $n)) {
+        echo "Name is incorrect";
+    } elseif (!preg_match($p, $em)) {
+        echo "Email is invalid";
+    } else {
+        echo "Welcome " . $n . ". Your Email " . $em . " is valid. You have logged in successfully.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validation of Email</title>
+</head>
+<body>
+    <h2>Validation of Email</h2>
+    <form name="fr" action="email.php" method="POST">
+        Enter name: <input type="text" name="n"><br>
+        Enter valid Email: <input type="text" name="em"><br>
+        <input type="submit" name="Submit" value="Submit">
+    </form>
+</body>
+</html>
